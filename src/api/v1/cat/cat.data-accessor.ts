@@ -21,7 +21,26 @@ export class CatDataAccessor {
     return await this.CatsDb.delete('id', id);
   }
 
-  public async updateCat(id: string, cat: Cat): Promise<Cat> {
+  public async updateCat(id: string, cat: Cat): Promise<Cat | undefined> {
     return await this.CatsDb.update(id, cat);
+  }
+
+  public async adoptCat(id: string): Promise<Cat | undefined> {
+    const catToAdopt = await this.getCatById(id);
+
+    if (catToAdopt && !catToAdopt.adopted) {
+      catToAdopt.adopted = true;
+      return await this.updateCat(id, catToAdopt);
+    } else {
+      return undefined;
+    }
+  }
+
+  public async getAdoptedCats(): Promise<Cat[] | undefined> {
+    return await this.CatsDb.getAllBy('adopted', true);
+  }
+
+  public async getNotAdoptedCats(): Promise<Cat[] | undefined> {
+    return await this.CatsDb.getAllBy('adopted', false);
   }
 }

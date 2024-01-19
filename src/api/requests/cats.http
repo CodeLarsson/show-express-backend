@@ -1,42 +1,50 @@
 @url=http://localhost:3000/api/v1/
 
 
-### Test conections to the /cat API
+### Test requests to the /cat API
 GET {{url}}cats
 
 ###
 
-GET {{url}}cats/2f2fef667b7553ade5b4
+GET {{url}}cats/03d5b4135bbe6ecda79a
 
 ###
 
-DELETE  {{url}}cats/2f2fef667b7553ade5b4
+DELETE {{url}}cats/2f2fef667b7553ade5b4
 
 ###
 
-PUT   {{url}}cats/
+PUT {{url}}cats/
 content-type: application/json
 
 {
     "name": "Alvar",
-    "race": "Sphynx",
-    "favouriteFood": "Cow",
+    "breed": "Sphynx",
+    "favouriteFood": "Tuna steak",
     "accepsBellyRubs": true,
+    "age": 5,
+    "image": "",
+    "description": "Cuddly little goblin",
+    "adopted": false,
     "id": "2f2fef667b7553ade5b4"
 }
 ###
-
+# Add a cat to the DB
 POST {{url}}cats/
 content-type: application/json
 
 {
     "name": "Alvar",
-    "race": "Sphynx",
-    "favouriteFood": "Tuna",
-    "accepsBellyRubs": true
+    "breed": "Sphynx",
+    "favouriteFood": "Tuna Qsteak",
+    "accepsBellyRubs": true,
+    "age": 5,
+    "image": "",
+    "description": "Cuddly little goblin",
+    "adopted": false
 }
 ###
-# Erronous
+# Erronous post, will fail validation
 POST {{url}}cats/
 content-type: application/json
 
@@ -45,3 +53,15 @@ content-type: application/json
     "favouriteFood": "Tuna",
     "accepsBellyRubs": true
 }
+
+###
+# get all adopted cats
+GET  {{url}}cats/adopt/adopted
+
+###
+# get all non adopted cats
+GET  {{url}}cats/adopt/notadopted
+
+###
+# Adopt a cat!
+PATCH   {{url}}cats/adopt/03d5b4135bbe6ecda79a

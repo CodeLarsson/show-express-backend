@@ -8,6 +8,7 @@ export const validateCat = async (
   next: NextFunction,
 ) => {
   try {
+    console.log(JSON.stringify(req.body));
     const parsedCat: Cat = catSchema.parse(req.body);
     req.body = parsedCat;
     next();

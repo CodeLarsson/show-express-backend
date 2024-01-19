@@ -27,10 +27,13 @@ export class MockDatabase<T extends MockEntity> {
     return this.store;
   }
 
-  public async update(id: string, value: any): Promise<T> {
+  public async update(id: string, value: any): Promise<T | undefined> {
     const entityIndex = this.store.findIndex((entity) => entity.id === id);
-    this.store[entityIndex] = value;
-    return this.store[entityIndex];
+    if (entityIndex > -1) {
+      this.store[entityIndex] = value;
+      return this.store[entityIndex];
+    }
+    return undefined;
   }
 
   public async delete(field: keyof T, value: any): Promise<boolean> {

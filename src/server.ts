@@ -2,6 +2,7 @@ import express, { Express } from 'express';
 import apiRouter from './api/api.router';
 import cors from 'cors';
 import helmet from 'helmet';
+import { requestLogger } from './middleware/request-logger';
 
 class Server {
   private app: Express = express();
@@ -12,6 +13,7 @@ class Server {
   }
 
   public startServer() {
+    this.app.use(requestLogger(true, 'verbose'));
     this.app.use(cors());
     this.app.use(helmet());
 
