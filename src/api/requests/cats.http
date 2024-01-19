@@ -1,0 +1,47 @@
+@url=http://localhost:3000/api/v1/
+
+
+### Test conections to the /cat API
+GET {{url}}cats
+
+###
+
+GET {{url}}cats/2f2fef667b7553ade5b4
+
+###
+
+DELETE  {{url}}cats/2f2fef667b7553ade5b4
+
+###
+
+PUT   {{url}}cats/
+content-type: application/json
+
+{
+    "name": "Alvar",
+    "race": "Sphynx",
+    "favouriteFood": "Cow",
+    "accepsBellyRubs": true,
+    "id": "2f2fef667b7553ade5b4"
+}
+###
+
+POST {{url}}cats/
+content-type: application/json
+
+{
+    "name": "Alvar",
+    "race": "Sphynx",
+    "favouriteFood": "Tuna",
+    "accepsBellyRubs": true
+}
+###
+# Erronous
+POST {{url}}cats/
+content-type: application/json
+
+{
+    "name": "Alvar",
+    "favouriteFood": "Tuna",
+    "accepsBellyRubs": true
+}
