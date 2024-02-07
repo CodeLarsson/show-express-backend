@@ -25,8 +25,8 @@ content-type: application/json
     "age": 5,
     "image": "",
     "description": "Cuddly little goblin",
-    "adopted": false,
-    "id": "2f2fef667b7553ade5b4"
+    "adopted": true,
+    "id": "cf11a8b76063ebe1065b"
 }
 ###
 # Add a cat to the DB
@@ -36,7 +36,7 @@ content-type: application/json
 {
     "name": "Alvar",
     "breed": "Sphynx",
-    "favouriteFood": "Tuna Qsteak",
+    "favouriteFood": "Tuna steak",
     "accepsBellyRubs": true,
     "age": 5,
     "image": "",
